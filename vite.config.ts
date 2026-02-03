@@ -7,13 +7,14 @@ export default defineConfig({
   base: './',
   server: {
     port: 5173,
-    // Proxy removed since we are using direct SDK calls for preview compatibility
   },
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false,
-    minify: 'terser',
+    // Terser removed to fix "terser not found" build error. 
+    // Vite will now use the built-in esbuild minifier.
+    minify: 'esbuild',
   },
   define: {
     'process.env.API_KEY': JSON.stringify(process.env.API_KEY)
